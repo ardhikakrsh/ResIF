@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "842730125560",
+    "project_id": "resif-99be7",
+    "storage_bucket": "resif-99be7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842730125560:android:ada272c27b8edfce6e230d",
+        "android_client_info": {
+          "package_name": "com.example.resif"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDjz6g1B3g8e7LIqRMJFQSz4s7PJAnYzt8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
