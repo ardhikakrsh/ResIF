@@ -22,7 +22,7 @@ class UserProvider extends ChangeNotifier {
       email,
       data['name'],
       data['phone'],
-      data['job'],
+      data['department'],
       data['photoUrl'],
     );
     _userData = {..._userData, ...data};
