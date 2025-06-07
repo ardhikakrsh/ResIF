@@ -28,9 +28,13 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return const MaterialApp(
+          return MaterialApp(
+            theme: ThemeData(
+              primaryColor: const Color(0xFF0D1B4D),
+              scaffoldBackgroundColor: Colors.white,
+            ),
             debugShowCheckedModeBanner: false,
-            home: AuthGate(),
+            home: const AuthGate(),
           );
         },
       );

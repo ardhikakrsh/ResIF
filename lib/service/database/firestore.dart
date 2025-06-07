@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
+import 'package:resif/models/rules.dart';
 
 class FirestoreService {
   // get collection of users
@@ -21,7 +22,7 @@ class FirestoreService {
     String email,
     String password,
     String? phone,
-    String? job,
+    String? department,
     String? photoUrl,
   ) async {
     await users.doc(email).set({
@@ -30,7 +31,7 @@ class FirestoreService {
       'email': email,
       'password': hashPassword(password),
       'phone': phone ?? '',
-      'job': job ?? '',
+      'department': department ?? '',
       'photoUrl': photoUrl ?? '',
     });
   }
@@ -49,14 +50,57 @@ class FirestoreService {
     String email,
     String name,
     String? phone,
-    String? job,
+    String? department,
     String? photoUrl,
   ) async {
     await users.doc(email).update({
       'name': name,
       'phone': phone,
-      'job': job,
+      'department': department,
       'photoUrl': photoUrl,
     });
+  }
+
+  Future<List<Rules>> fetchAllRules() async {
+    try {
+      QuerySnapshot snapshot =
+          await FirebaseFirestore.instance.collection('rules').get();
+
+      if (snapshot.docs.isEmpty) {
+        return [];
+      }
+
+      // Ubah setiap dokumen menjadi objek Rules
+      return snapshot.docs.map((doc) {
+        final data = doc.data() as Map<String, dynamic>;
+
+        // --- FIX LOGIC STARTS HERE ---
+        // Logika ini menangani jika 'content' adalah List atau String tunggal
+        final dynamic contentData = data['content'];
+        List<String> contentList = [];
+
+        if (contentData is List) {
+          // Jika sudah berupa list, konversi langsung
+          contentList = List<String>.from(contentData);
+        } else if (contentData is String) {
+          // Jika hanya string, bungkus menjadi list berisi satu item
+          contentList = [contentData];
+        }
+        // jika map
+        else if (contentData is Map) {
+          // Jika 'content' adalah Map, kita bisa mengubahnya menjadi list
+          contentList = contentData.values.map((e) => e.toString()).toList();
+        }
+
+        return Rules(
+          id: doc.id,
+          title: data['title'] ?? doc.id.replaceAll('_', ' '),
+          content: contentList, // Gunakan list yang sudah aman
+        );
+      }).toList();
+    } catch (e) {
+      print("Error fetching rule sections: $e");
+      throw Exception("Gagal memuat data dari server.");
+    }
   }
 }
