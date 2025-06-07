@@ -60,9 +60,16 @@ class _LoginPageState extends State<LoginPage> {
               ),
               child: Container(
                 height: 0.6.sh, // Sesuaikan tinggi sheet untuk login
-                padding: EdgeInsets.symmetric(horizontal: 32.w),
+                padding: EdgeInsets.symmetric(horizontal: 40.w),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0D1B4D), // Warna biru tua
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color(0xFF20469B),
+                      Color(0xFF0B1835),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                  ),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(35.r),
                     topRight: Radius.circular(35.r),

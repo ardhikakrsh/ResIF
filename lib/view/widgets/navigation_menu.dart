@@ -5,7 +5,7 @@ import 'package:iconly/iconly.dart';
 import 'package:resif/view/pages/booking_page.dart';
 import 'package:resif/view/pages/history_page.dart';
 import 'package:resif/view/pages/home_page.dart';
-import 'package:resif/view/pages/profile_page.dart';
+import 'package:resif/view/pages/profile/profile_page.dart';
 
 class NavigationMenu extends StatefulWidget {
   const NavigationMenu({super.key});

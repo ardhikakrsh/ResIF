@@ -62,12 +62,19 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               child: Container(
                 height: 0.6.sh,
-                padding: EdgeInsets.symmetric(horizontal: 32.w),
+                padding: EdgeInsets.symmetric(horizontal: 40.w),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF0D1B4D),
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(35.r),
                     topRight: Radius.circular(35.r),
+                  ),
+                  gradient: const LinearGradient(
+                    colors: [
+                      Color(0xFF20469B),
+                      Color(0xFF0B1835),
+                    ],
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
                   ),
                 ),
                 child: SingleChildScrollView(
@@ -275,7 +282,7 @@ class _RegisterPageState extends State<RegisterPage> {
           emailController.text,
           passwordController.text,
           null, // phone
-          null, // job
+          null, // department
           null, // photoUrl
         );
 
