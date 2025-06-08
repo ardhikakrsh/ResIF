@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:resif/providers/user_provider.dart';
 
@@ -54,7 +55,26 @@ class HeaderHome extends StatelessWidget {
             border: Border.all(color: Colors.white, width: 1),
           ),
           child: IconButton(
-            onPressed: () {},
+            // 2. Logika onPressed diperbarui
+            onPressed: () async {
+              // Cek status izin notifikasi saat ini
+              var status = await Permission.notification.status;
+
+              if (status.isGranted) {
+                // Jika sudah diizinkan, mungkin tampilkan pesan atau buka halaman notifikasi di dalam aplikasi
+                print("Izin notifikasi sudah diberikan.");
+                // Jika perlu, Anda tetap bisa membuka pengaturan
+                await openAppSettings();
+              } else if (status.isPermanentlyDenied) {
+                // Jika pengguna menolak secara permanen, satu-satunya cara adalah membuka pengaturan
+                print("Izin ditolak permanen, membuka pengaturan aplikasi.");
+                await openAppSettings();
+              } else {
+                // Jika belum diminta atau baru ditolak sekali, minta izin lagi.
+                print("Meminta izin notifikasi...");
+                await Permission.notification.request();
+              }
+            },
             icon: const Icon(
               IconlyLight.notification,
               color: Colors.white,

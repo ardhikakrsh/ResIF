@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:iconly/iconly.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
 import 'package:resif/providers/user_provider.dart';
 
@@ -54,7 +55,11 @@ class Header extends StatelessWidget {
             border: Border.all(color: Colors.white, width: 1),
           ),
           child: IconButton(
-            onPressed: () {},
+            // 2. Tambahkan logika onPressed di sini
+            onPressed: () async {
+              // Membuka halaman pengaturan aplikasi di perangkat pengguna
+              await openAppSettings();
+            },
             icon: const Icon(
               IconlyLight.notification,
               color: Colors.white,
