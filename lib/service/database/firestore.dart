@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
+import 'package:resif/models/rooms.dart';
 import 'package:resif/models/rules.dart';
 
 class FirestoreService {
@@ -61,6 +62,7 @@ class FirestoreService {
     });
   }
 
+  // fetch all rules from Firestore
   Future<List<Rules>> fetchAllRules() async {
     try {
       QuerySnapshot snapshot =
@@ -74,7 +76,6 @@ class FirestoreService {
       return snapshot.docs.map((doc) {
         final data = doc.data() as Map<String, dynamic>;
 
-        // --- FIX LOGIC STARTS HERE ---
         // Logika ini menangani jika 'content' adalah List atau String tunggal
         final dynamic contentData = data['content'];
         List<String> contentList = [];
@@ -86,21 +87,33 @@ class FirestoreService {
           // Jika hanya string, bungkus menjadi list berisi satu item
           contentList = [contentData];
         }
-        // jika map
-        else if (contentData is Map) {
-          // Jika 'content' adalah Map, kita bisa mengubahnya menjadi list
-          contentList = contentData.values.map((e) => e.toString()).toList();
-        }
 
         return Rules(
           id: doc.id,
-          title: data['title'] ?? doc.id.replaceAll('_', ' '),
-          content: contentList, // Gunakan list yang sudah aman
+          title: data['title'],
+          content: contentList,
         );
       }).toList();
     } catch (e) {
       print("Error fetching rule sections: $e");
       throw Exception("Gagal memuat data dari server.");
+    }
+  }
+
+  // fetch all rooms from Firestore
+  Future<List<Room>> fetchRooms() async {
+    try {
+      QuerySnapshot snapshot =
+          await FirebaseFirestore.instance.collection('rooms').get();
+      if (snapshot.docs.isEmpty) {
+        return [];
+      }
+      return snapshot.docs.map((doc) {
+        return Room.fromFirestore(doc.data() as Map<String, dynamic>);
+      }).toList();
+    } catch (e) {
+      print("Error fetching rooms: $e");
+      throw Exception("Gagal memuat data ruangan.");
     }
   }
 }
