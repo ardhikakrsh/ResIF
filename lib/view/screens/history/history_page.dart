@@ -9,7 +9,6 @@ import 'package:resif/view_model/history/history_viewmodel.dart';
 class HistoryPage extends StatelessWidget {
   const HistoryPage({super.key});
 
-  // Helper untuk mendapatkan chip status, tetap di View karena ini adalah logika tampilan.
   Widget _getStatusChip(Status status) {
     Color chipColor;
     String statusText = status.name[0].toUpperCase() + status.name.substring(1);
@@ -69,11 +68,9 @@ class HistoryPage extends StatelessWidget {
                       ),
                     ),
                   ),
-                  // Consumer akan 'mendengarkan' perubahan dari ViewModel
                   Expanded(
                     child: Consumer<HistoryViewModel>(
                       builder: (context, viewModel, child) {
-                        // Tampilkan UI yang berbeda berdasarkan state dari ViewModel
                         switch (viewModel.state) {
                           case ViewState.loading:
                             return const Center(child: CircularProgressIndicator());
@@ -83,7 +80,6 @@ class HistoryPage extends StatelessWidget {
                             if (viewModel.bookings.isEmpty) {
                               return const Center(child: Text('No booking history found.'));
                             }
-                            // Jika sukses, tampilkan daftar booking
                             return ListView.builder(
                               padding: EdgeInsets.symmetric(horizontal: 16.w),
                               itemCount: viewModel.bookings.length,

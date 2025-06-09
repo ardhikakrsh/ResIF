@@ -18,7 +18,6 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   void initState() {
     super.initState();
-    // Panggil bottom sheet setelah frame pertama selesai di-render.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _showRegisterSheet(context);
     });
@@ -154,7 +153,6 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   Widget build(BuildContext context) {
-    // Tampilan header tidak berubah
     return Scaffold(
       backgroundColor: Colors.grey[200],
       resizeToAvoidBottomInset: false,

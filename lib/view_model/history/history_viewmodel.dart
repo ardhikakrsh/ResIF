@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:resif/models/booking.dart';
 import 'package:resif/service/database/firestore.dart';
 
-// Enum untuk merepresentasikan state dari UI dengan lebih jelas
 enum ViewState { idle, loading, success, error }
 
 class HistoryViewModel extends ChangeNotifier {
@@ -19,17 +18,14 @@ class HistoryViewModel extends ChangeNotifier {
   String? get errorMessage => _errorMessage;
 
   HistoryViewModel() {
-    // Langsung panggil method untuk mengambil data saat ViewModel dibuat
     fetchBookings();
   }
 
-  // Method untuk mengubah state dan memberitahu listener
   void _setState(ViewState newState) {
     _state = newState;
     notifyListeners();
   }
 
-  // Method untuk mengambil data riwayat booking
   Future<void> fetchBookings() async {
     _setState(ViewState.loading);
     try {

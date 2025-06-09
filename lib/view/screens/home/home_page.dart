@@ -32,10 +32,8 @@ class HomePage extends StatelessWidget {
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
-                          // Consumer akan mendengarkan perubahan dari HomeViewModel
                           Consumer<HomeViewModel>(
                             builder: (context, viewModel, child) {
-                              // Tampilkan UI yang sesuai berdasarkan state dari ViewModel
                               switch (viewModel.state) {
                                 case ViewState.loading:
                                   return const Center(
@@ -55,7 +53,6 @@ class HomePage extends StatelessWidget {
                                       child: Text('Tidak ada aturan tersedia.'),
                                     );
                                   }
-                                  // Jika sukses, tampilkan daftar aturan
                                   return ListView.builder(
                                     itemCount: viewModel.rules.length,
                                     shrinkWrap: true,

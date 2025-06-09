@@ -8,7 +8,6 @@ import 'package:resif/service/database/firestore.dart';
 import 'package:resif/view/screens/welcome_page.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-
 class EditProfileViewModel extends ChangeNotifier {
   final UserProvider _userProvider;
   final FirestoreService _db = FirestoreService();
@@ -126,7 +125,6 @@ class EditProfileViewModel extends ChangeNotifier {
               style: ElevatedButton.styleFrom(backgroundColor: Colors.redAccent),
               onPressed: () async {
                 await _confirmDeleteAccount(context, passwordController.text);
-                // Tutup dialog setelah proses selesai
                 if(context.mounted) Navigator.of(dialogContext).pop();
               },
               child: const Text('Delete', style: TextStyle(color: Colors.white)),
@@ -149,7 +147,6 @@ class EditProfileViewModel extends ChangeNotifier {
       await _auth.deleteAccount();
 
       if (context.mounted) {
-        // Navigasi ke WelcomePage dan hapus semua rute sebelumnya
         Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(builder: (context) => const WelcomePage()),
               (Route<dynamic> route) => false,

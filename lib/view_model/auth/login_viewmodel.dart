@@ -1,5 +1,3 @@
-// File: lib/viewmodels/login_viewmodel.dart
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
@@ -20,13 +18,11 @@ class LoginViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  // Fungsi untuk mengubah visibilitas password
   void togglePasswordVisibility() {
     _isPasswordVisible = !_isPasswordVisible;
     notifyListeners();
   }
 
-  // Fungsi untuk menangani logika login
   Future<void> login(BuildContext context) async {
     if (emailController.text.isEmpty || passwordController.text.isEmpty) {
       showTopSnackbar(
@@ -58,7 +54,6 @@ class LoginViewModel extends ChangeNotifier {
         passwordController.text,
       );
 
-      // Pastikan context masih valid sebelum mengakses Provider
       if (!context.mounted) return;
       final userProvider = Provider.of<UserProvider>(context, listen: false);
       await userProvider.loadUserDataByEmail(emailController.text);
@@ -94,7 +89,6 @@ class LoginViewModel extends ChangeNotifier {
     }
   }
 
-  // Helper untuk mengatur state loading dan memberitahu listeners
   void _setLoading(bool value) {
     _isLoading = value;
     notifyListeners();

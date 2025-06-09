@@ -14,10 +14,8 @@ class ProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Data pengguna tetap diambil dari UserProvider karena ini adalah state data
     final userData = Provider.of<UserProvider>(context).userData;
 
-    // ViewModel dibuat untuk menangani Aksi
     return ChangeNotifierProvider(
       create: (_) => ProfileViewModel(),
       child: Scaffold(
@@ -52,7 +50,6 @@ class ProfilePage extends StatelessWidget {
                             ],
                           ),
                           child:
-                          // Consumer digunakan untuk mendapatkan akses ke instance ViewModel
                           Consumer<ProfileViewModel>(
                             builder: (context, viewModel, child) {
                               return Column(
@@ -105,7 +102,6 @@ class ProfilePage extends StatelessWidget {
                                     iconColor: Colors.white,
                                     backgroundColor: Colors.redAccent,
                                     shadowColor: Colors.redAccent,
-                                    // Tombol logout sekarang memanggil method dari ViewModel
                                     onPressed: () => viewModel.showLogoutDialog(context),
                                   ),
                                 ],

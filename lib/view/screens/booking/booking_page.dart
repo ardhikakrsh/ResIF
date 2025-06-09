@@ -51,7 +51,6 @@ class BookingPage extends StatelessWidget {
                                 ),
                                 _buildCategoryFilters(viewModel),
                                 SizedBox(height: 20.h),
-                                // Menampilkan UI berdasarkan state dari ViewModel
                                 _buildBody(context, viewModel),
                               ],
                             ),
@@ -92,7 +91,7 @@ class BookingPage extends StatelessWidget {
         );
       case ViewState.idle:
       default:
-        return const SizedBox.shrink(); // Tampilkan kosong saat idle
+        return const SizedBox.shrink();
     }
   }
 
@@ -113,7 +112,6 @@ class BookingPage extends StatelessWidget {
             selected: isSelected,
             onSelected: (selected) {
               if (selected) {
-                // Panggil method di ViewModel untuk update kategori
                 viewModel.updateCategory(category);
               }
             },

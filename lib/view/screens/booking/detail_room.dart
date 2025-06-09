@@ -17,27 +17,23 @@ class DetailRoomPage extends StatefulWidget {
 
 class _DetailRoomPageState extends State<DetailRoomPage>
     with SingleTickerProviderStateMixin {
-  // View sekarang hanya memegang instance ViewModel
   late final DetailRoomViewModel _viewModel;
 
   @override
   void initState() {
     super.initState();
-    // Buat ViewModel dan inisialisasi TabController-nya
     _viewModel = DetailRoomViewModel(room: widget.room);
     _viewModel.init(this); // 'this' adalah TickerProvider
   }
 
   @override
   void dispose() {
-    // Panggil dispose pada ViewModel untuk membersihkan controller
     _viewModel.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    // Sediakan ViewModel ke widget tree di bawahnya
     return ChangeNotifierProvider.value(
       value: _viewModel,
       child: Consumer<DetailRoomViewModel>(
@@ -56,7 +52,6 @@ class _DetailRoomPageState extends State<DetailRoomPage>
                             horizontal: 20.w, vertical: 50.h),
                         child: Center(
                           child: Text(
-                            // Ambil judul dari ViewModel
                             viewModel.headerTitle,
                             style: TextStyle(
                               fontSize: 24.sp,
@@ -87,7 +82,6 @@ class _DetailRoomPageState extends State<DetailRoomPage>
                               children: [
                                 // TabBar
                                 TabBar(
-                                  // Gunakan controller dari ViewModel
                                   controller: viewModel.tabController,
                                   indicatorColor: const Color(0xFF0D1B4D),
                                   labelStyle: TextStyle(
@@ -101,10 +95,8 @@ class _DetailRoomPageState extends State<DetailRoomPage>
                                     Tab(text: 'Form'),
                                   ],
                                 ),
-                                // TabBarView
                                 Expanded(
                                   child: TabBarView(
-                                    // Gunakan controller dari ViewModel
                                     controller: viewModel.tabController,
                                     children: [
                                       DetailsTab(room: widget.room),

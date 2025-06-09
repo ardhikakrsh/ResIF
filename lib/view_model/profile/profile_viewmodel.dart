@@ -17,7 +17,6 @@ class ProfileViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // Method untuk menangani navigasi ke halaman edit profil
   void navigateToEditProfile(BuildContext context) {
     Navigator.push(
       context,
@@ -27,17 +26,14 @@ class ProfileViewModel extends ChangeNotifier {
     );
   }
 
-  // Method untuk menangani proses logout secara keseluruhan
   Future<void> logout(BuildContext context) async {
     _setLoading(true);
     try {
       await _authService.signOut();
 
       if (context.mounted) {
-        // Membersihkan data user dari provider
         Provider.of<UserProvider>(context, listen: false).clearUserData();
 
-        // Navigasi ke halaman welcome dan hapus semua rute sebelumnya
         Navigator.pushAndRemoveUntil(
           context,
           MaterialPageRoute(builder: (context) => const WelcomePage()),
@@ -45,17 +41,14 @@ class ProfileViewModel extends ChangeNotifier {
         );
       }
     } catch (e) {
-      // Handle error jika logout gagal (opsional)
       debugPrint("Error during logout: $e");
     } finally {
-      // Pastikan state loading selalu kembali ke false
       if (_isLoading) {
         _setLoading(false);
       }
     }
   }
 
-  // Method untuk menampilkan dialog konfirmasi logout
   void showLogoutDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -69,11 +62,8 @@ class ProfileViewModel extends ChangeNotifier {
           buttonText1: 'Cancel',
           buttonText2: 'Logout',
           backgroundColor: Colors.redAccent,
-          // Saat tombol Logout di dialog ditekan, panggil method logout utama
           onPressed: () async {
-            // Tutup dialog terlebih dahulu
             Navigator.of(dialogContext).pop();
-            // Kemudian jalankan proses logout
             await logout(context);
           },
         );

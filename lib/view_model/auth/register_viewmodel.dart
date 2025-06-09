@@ -1,5 +1,3 @@
-// File: lib/view_model/auth/register_viewmodel.dart
-
 import 'package:flutter/material.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:resif/helper/display_message.dart';
@@ -29,27 +27,23 @@ class RegisterViewModel extends ChangeNotifier {
   bool _isLoading = false;
   bool get isLoading => _isLoading;
 
-  // Method untuk mengubah state loading
   void _setLoading(bool loading) {
     _isLoading = loading;
     notifyListeners();
   }
 
-  // Method untuk mengubah visibilitas password
   void togglePasswordVisibility() {
     _isPasswordVisible = !_isPasswordVisible;
     notifyListeners();
   }
 
-  // Method untuk mengubah visibilitas konfirmasi password
   void toggleConfirmPasswordVisibility() {
     _isConfirmPasswordVisible = !_isConfirmPasswordVisible;
     notifyListeners();
   }
 
-  // Method untuk logika registrasi
   Future<void> register(BuildContext context) async {
-    // Validasi input
+
     if (nameController.text.isEmpty ||
         emailController.text.isEmpty ||
         passwordController.text.isEmpty ||
@@ -86,14 +80,13 @@ class RegisterViewModel extends ChangeNotifier {
     _setLoading(true);
 
     try {
-      // Sign up dengan email dan password
+
       await _authService.signUpWithEmailPassword(
         nameController.text,
         emailController.text,
         passwordController.text,
       );
 
-      // Simpan data user ke Firestore
       await _db.saveUserDataToDatabase(
         nameController.text,
         emailController.text,
@@ -126,7 +119,6 @@ class RegisterViewModel extends ChangeNotifier {
     }
   }
 
-  // Membersihkan controller saat ViewModel tidak lagi digunakan
   @override
   void dispose() {
     nameController.dispose();

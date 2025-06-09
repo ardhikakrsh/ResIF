@@ -1,5 +1,3 @@
-// File: lib/view/screens/auth/login_page.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
@@ -22,7 +20,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
-    // Panggil bottom sheet setelah frame pertama selesai di-render.
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _showLoginSheet(context);
     });
@@ -36,8 +33,7 @@ class _LoginPageState extends State<LoginPage> {
       enableDrag: false,
       backgroundColor: Colors.transparent,
       barrierColor: Colors.transparent,
-      builder: (_) { // Context di sini dinamai ulang menjadi _ untuk menghindari duplikasi
-        // Menyediakan LoginViewModel ke dalam widget tree bottom sheet
+      builder: (_) {
         return ChangeNotifierProvider(
           create: (_) => LoginViewModel(),
           child: Consumer<LoginViewModel>(
@@ -105,11 +101,8 @@ class _LoginPageState extends State<LoginPage> {
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12.r),
                               ),
-                              // Menonaktifkan tombol saat loading
                               disabledBackgroundColor: const Color(0xFF0B1835),
                             ),
-                            // Panggil viewModel.login saat ditekan
-                            // Jika sedang loading, onPressed akan null (tombol nonaktif)
                             onPressed: viewModel.isLoading
                                 ? null
                                 : () => viewModel.login(context),
