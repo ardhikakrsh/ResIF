@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
-import 'package:resif/components/row_button.dart';
+import 'package:resif/view/components/row_button.dart';
 import 'package:resif/helper/top_snackbar.dart';
 import 'package:resif/models/booking.dart';
 import 'package:resif/models/rooms.dart';

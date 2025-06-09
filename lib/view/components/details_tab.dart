@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:resif/components/row_button.dart';
+import 'package:resif/view/components/row_button.dart';
 import 'package:resif/models/rooms.dart';
 
 class DetailsTab extends StatelessWidget {
