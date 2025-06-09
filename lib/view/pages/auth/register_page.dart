@@ -61,7 +61,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: Container(
-                height: 0.6.sh,
+                height: 0.65.sh,
                 padding: EdgeInsets.symmetric(horizontal: 40.w),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.only(
@@ -162,7 +162,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         children: [
                           Text("Already have an account?",
                               style: TextStyle(
-                                  fontSize: 14.sp, color: Colors.white)),
+                                  fontSize: 12.sp, color: Colors.white)),
                           GestureDetector(
                             onTap: () {
                               Navigator.pushReplacement(
@@ -174,7 +174,7 @@ class _RegisterPageState extends State<RegisterPage> {
                             child: Text(
                               ' Login here',
                               style: TextStyle(
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 color: Colors.blueAccent[100],
                                 fontWeight: FontWeight.bold,
                               ),
@@ -182,6 +182,7 @@ class _RegisterPageState extends State<RegisterPage> {
                           ),
                         ],
                       ),
+                      SizedBox(height: 20.h),
                     ],
                   ),
                 ),
@@ -201,7 +202,7 @@ class _RegisterPageState extends State<RegisterPage> {
       resizeToAvoidBottomInset: false,
       body: SizedBox(
         width: double.infinity,
-        height: 0.5.sh, // Tinggi area header
+        height: 0.45.sh, // Tinggi area header
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

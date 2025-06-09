@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:crystal_navigation_bar/crystal_navigation_bar.dart';
 import 'package:iconly/iconly.dart';
-import 'package:resif/view/pages/booking_page.dart';
-import 'package:resif/view/pages/history_page.dart';
-import 'package:resif/view/pages/home_page.dart';
+import 'package:resif/view/pages/booking/booking_page.dart';
+import 'package:resif/view/pages/history/history_page.dart';
+import 'package:resif/view/pages/home/home_page.dart';
 import 'package:resif/view/pages/profile/profile_page.dart';
 
 class NavigationMenu extends StatefulWidget {

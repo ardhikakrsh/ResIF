@@ -59,7 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                 bottom: MediaQuery.of(context).viewInsets.bottom,
               ),
               child: Container(
-                height: 0.6.sh, // Sesuaikan tinggi sheet untuk login
+                height: 0.65.sh, // Sesuaikan tinggi sheet untuk login
                 padding: EdgeInsets.symmetric(horizontal: 40.w),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
@@ -179,7 +179,7 @@ class _LoginPageState extends State<LoginPage> {
                         children: [
                           Text("Don't have an account?",
                               style: TextStyle(
-                                  fontSize: 14.sp, color: Colors.white)),
+                                  fontSize: 12.sp, color: Colors.white)),
                           GestureDetector(
                             onTap: () {
                               Navigator.pushReplacement(
@@ -191,7 +191,7 @@ class _LoginPageState extends State<LoginPage> {
                             child: Text(
                               ' Register here',
                               style: TextStyle(
-                                fontSize: 14.sp,
+                                fontSize: 12.sp,
                                 color: Colors.blueAccent[100],
                                 fontWeight: FontWeight.bold,
                               ),
@@ -219,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
       resizeToAvoidBottomInset: false,
       body: SizedBox(
         width: double.infinity,
-        height: 0.5.sh, // Tinggi area header
+        height: 0.45.sh, // Tinggi area header
         child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

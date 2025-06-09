@@ -2,6 +2,7 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:resif/components/blue_background.dart';
 import 'package:resif/components/header.dart';
 import 'package:resif/components/main_button.dart';
 import 'package:resif/components/row_button.dart';
@@ -51,164 +52,147 @@ class _EditProfilePageState extends State<EditProfilePage> {
     final userData = Provider.of<UserProvider>(context).userData;
 
     return Scaffold(
-      body: Column(
+      body: Stack(
         children: [
-          Container(
-            width: double.infinity,
-            height: 150.h,
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-              ),
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF20469B),
-                  Color(0xFF0B1835),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 20.0.w,
-                right: 20.0.w,
-                top: 60.0.h,
-              ),
-              child: const Column(
-                children: [
-                  Header(),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 20.h),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.all(20.0.w),
-                child: Container(
-                  padding: EdgeInsets.all(20.0.w),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(20.0.r),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 2,
-                        blurRadius: 10,
-                        offset: const Offset(0, 3),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Account Details',
-                        style: TextStyle(
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w600,
-                          color: const Color(0xFF20469B),
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
-
-                      // Name field
-                      TextField(
-                        controller: nameController,
-                        decoration: InputDecoration(
-                          labelText: 'Name',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.r),
-                            borderSide: const BorderSide(
-                              color: Colors.grey,
-                              width: 1.0,
+          BlueBackground(height: 150.h),
+          SafeArea(
+            child: Column(
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      top: 30.0.h, left: 20.0.w, right: 20.0.w, bottom: 20.0.h),
+                  child: const Header(),
+                ),
+                SizedBox(height: 20.h),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.all(20.0.w),
+                      child: Container(
+                        padding: EdgeInsets.all(20.0.w),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20.0.r),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 2,
+                              blurRadius: 10,
+                              offset: const Offset(0, 3),
                             ),
-                          ),
+                          ],
                         ),
-                      ),
-                      SizedBox(height: 20.h),
-
-                      // Email field
-                      TextField(
-                        enabled: false,
-                        controller: emailController,
-                        decoration: InputDecoration(
-                          labelText: 'Email',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.r),
-                            borderSide: const BorderSide(
-                              color: Colors.grey,
-                              width: 1.0,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Account Details',
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w600,
+                                color: const Color(0xFF0D1B4D),
+                              ),
                             ),
-                          ),
-                          hintText: userData['email'] ?? 'No Email',
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
+                            SizedBox(height: 20.h),
 
-                      // Phone field
-                      TextField(
-                        controller: phoneController,
-                        keyboardType: TextInputType.phone,
-                        decoration: InputDecoration(
-                          labelText: 'Phone',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.r),
-                            borderSide: const BorderSide(
-                              color: Colors.grey,
-                              width: 1.0,
+                            // Name field
+                            TextField(
+                              controller: nameController,
+                              decoration: InputDecoration(
+                                labelText: 'Name',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 1.0,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                          hintText: userData['phone'] ?? 'No Phone',
-                        ),
-                      ),
-                      SizedBox(height: 20.h),
+                            SizedBox(height: 20.h),
 
-                      // Department field
-                      TextField(
-                        controller: departmentController,
-                        decoration: InputDecoration(
-                          labelText: 'Department',
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.r),
-                            borderSide: const BorderSide(
-                              color: Colors.grey,
-                              width: 1.0,
+                            // Email field
+                            TextField(
+                              enabled: false,
+                              controller: emailController,
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                hintText: userData['email'] ?? 'No Email',
+                              ),
                             ),
-                          ),
-                          hintText: userData['department'] ?? 'No Department',
+                            SizedBox(height: 20.h),
+
+                            // Phone field
+                            TextField(
+                              controller: phoneController,
+                              keyboardType: TextInputType.phone,
+                              decoration: InputDecoration(
+                                labelText: 'Phone',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                hintText: userData['phone'] ?? 'No Phone',
+                              ),
+                            ),
+                            SizedBox(height: 20.h),
+
+                            // Department field
+                            TextField(
+                              controller: departmentController,
+                              decoration: InputDecoration(
+                                labelText: 'Department',
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10.r),
+                                  borderSide: const BorderSide(
+                                    color: Colors.grey,
+                                    width: 1.0,
+                                  ),
+                                ),
+                                hintText:
+                                    userData['department'] ?? 'No Department',
+                              ),
+                            ),
+                            SizedBox(height: 20.h),
+
+                            // delete account button
+                            MainButton(
+                              text: 'Delete Account',
+                              textColor: Colors.white,
+                              icon: Icons.delete,
+                              iconColor: Colors.white,
+                              backgroundColor: Colors.redAccent,
+                              shadowColor: Colors.redAccent,
+                              onPressed: () => onDeleteAccountPressed(
+                                context,
+                                userData['email'] ?? '',
+                              ),
+                            ),
+
+                            const SizedBox(height: 50),
+                            // back & edit button
+                            RowButton(
+                              text1: 'Back',
+                              text2: 'Save Changes',
+                              onPressed: onSaveChangesPressed,
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(height: 20.h),
-
-                      // delete account button
-                      MainButton(
-                        text: 'Delete Account',
-                        textColor: Colors.white,
-                        icon: Icons.delete,
-                        iconColor: Colors.white,
-                        backgroundColor: Colors.redAccent,
-                        shadowColor: Colors.redAccent,
-                        onPressed: () => onDeleteAccountPressed(
-                          context,
-                          userData['email'] ?? '',
-                        ),
-                      ),
-
-                      const SizedBox(height: 50),
-                      // back & edit button
-                      RowButton(
-                        text1: 'Back',
-                        text2: 'Save Changes',
-                        onPressed: onSaveChangesPressed,
-                      ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
         ],
