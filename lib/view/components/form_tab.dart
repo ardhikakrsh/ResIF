@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+import 'package:resif/providers/user_provider.dart';
 import 'package:resif/view/components/row_button.dart';
 import 'package:resif/helper/top_snackbar.dart';
 import 'package:resif/models/booking.dart';
@@ -372,6 +374,8 @@ class _FormTabState extends State<FormTab> {
 
   void onSubmitPressed() async {
     FirestoreService db = FirestoreService();
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+
     if (nameController.text.isEmpty ||
         emailController.text.isEmpty ||
         nrpController.text.isEmpty ||
@@ -409,6 +413,7 @@ class _FormTabState extends State<FormTab> {
     }
 
     final booking = BookingModel(
+      userEmail: userProvider.userData['email'] ?? '',
       roomCode: widget.room.code,
       roomName: widget.room.name,
       name: nameController.text,

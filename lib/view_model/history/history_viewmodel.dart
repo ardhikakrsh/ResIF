@@ -17,8 +17,8 @@ class HistoryViewModel extends ChangeNotifier {
   String? _errorMessage;
   String? get errorMessage => _errorMessage;
 
-  HistoryViewModel() {
-    fetchBookings();
+  HistoryViewModel(String userEmail) {
+    fetchBookings(userEmail);
   }
 
   void _setState(ViewState newState) {
@@ -26,10 +26,10 @@ class HistoryViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchBookings() async {
+  Future<void> fetchBookings(String userEmail) async {
     _setState(ViewState.loading);
     try {
-      _bookings = await _firestoreService.fetchBookings();
+      _bookings = await _firestoreService.fetchBookingsByEmail(userEmail);
       _setState(ViewState.success);
     } catch (e) {
       _errorMessage = e.toString();

@@ -6,6 +6,7 @@ enum Status {
 
 class BookingModel {
   final String? id;
+  final String userEmail;
   final String roomCode;
   final String roomName;
   final String name;
@@ -33,7 +34,8 @@ class BookingModel {
 
   BookingModel({
     this.id,
-    required this.roomCode, // Added
+    required this.userEmail,
+    required this.roomCode,
     required this.roomName,
     required this.name,
     required this.nrp,
@@ -59,9 +61,11 @@ class BookingModel {
     required this.createdAt,
   });
 
+  // objek BookingModel menjadi Map<String, dynamic>, format yang dibutuhkan oleh Firebase
   Map<String, dynamic> toMap() {
     return {
-      'roomCode': roomCode, // Added
+      'userEmail': userEmail,
+      'roomCode': roomCode,
       'roomName': roomName,
       'name': name,
       'nrp': nrp,
@@ -82,15 +86,17 @@ class BookingModel {
       'acara': acara,
       'kategori': kategori,
       'deskripsi': deskripsi,
-      'imageUrl': posterUrl,
+      'posterUrl': posterUrl,
       'status': status.name,
       'createdAt': createdAt.toIso8601String(),
     };
   }
 
-  factory BookingModel.fromMap(Map<String, dynamic> map, {String? id}) {
+  // ambil data mentah berupa map dari Firestore dan ubah menjadi BookingModel
+  factory BookingModel.fromMap(Map<String, dynamic> map, String id) {
     return BookingModel(
       id: id,
+      userEmail: map['userEmail'] ?? '',
       roomCode: map['roomCode'] ?? '',
       roomName: map['roomName'] ?? '',
       name: map['name'] ?? '',

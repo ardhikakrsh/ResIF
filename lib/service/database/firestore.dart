@@ -126,21 +126,21 @@ class FirestoreService {
   }
 
   // NEW: Method to fetch all bookings
-  Future<List<BookingModel>> fetchBookings() async {
+  Future<List<BookingModel>> fetchBookingsByEmail(String userEmail) async {
     try {
-      QuerySnapshot snapshot = await bookingForm
-          .orderBy('createdAt', descending: true) // Show newest first
-          .get();
+      QuerySnapshot snapshot =
+          await bookingForm.where('userEmail', isEqualTo: userEmail).get();
+
       if (snapshot.docs.isEmpty) {
         return [];
       }
+
       return snapshot.docs.map((doc) {
-        return BookingModel.fromMap(doc.data() as Map<String, dynamic>,
-            id: doc.id);
+        return BookingModel.fromMap(doc.data() as Map<String, dynamic>, doc.id);
       }).toList();
     } catch (e) {
       print("Error fetching bookings: $e");
-      throw Exception("Gagal memuat data booking.");
+      throw Exception("Gagal memuat data pemesanan.");
     }
   }
 }

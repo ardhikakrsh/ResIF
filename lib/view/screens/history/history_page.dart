@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:resif/providers/user_provider.dart';
 import 'package:resif/view/components/blue_background.dart';
 import 'package:resif/view/components/header.dart';
 import 'package:resif/models/booking.dart';
@@ -41,8 +42,11 @@ class HistoryPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final userEmail =
+        Provider.of<UserProvider>(context).userData['email'] ?? '';
+
     return ChangeNotifierProvider(
-      create: (_) => HistoryViewModel(),
+      create: (_) => HistoryViewModel(userEmail),
       child: Scaffold(
         body: Stack(
           children: [
@@ -53,7 +57,10 @@ class HistoryPage extends StatelessWidget {
                 children: [
                   Padding(
                     padding: EdgeInsets.only(
-                        top: 30.0.h, left: 20.0.w, right: 20.0.w, bottom: 20.0.h),
+                        top: 30.0.h,
+                        left: 20.0.w,
+                        right: 20.0.w,
+                        bottom: 20.0.h),
                     child: const Header(),
                   ),
                   SizedBox(height: 20.h),
@@ -73,12 +80,16 @@ class HistoryPage extends StatelessWidget {
                       builder: (context, viewModel, child) {
                         switch (viewModel.state) {
                           case ViewState.loading:
-                            return const Center(child: CircularProgressIndicator());
+                            return const Center(
+                                child: CircularProgressIndicator());
                           case ViewState.error:
-                            return Center(child: Text('Error: ${viewModel.errorMessage}'));
+                            return Center(
+                                child:
+                                    Text('Error: ${viewModel.errorMessage}'));
                           case ViewState.success:
                             if (viewModel.bookings.isEmpty) {
-                              return const Center(child: Text('No booking history found.'));
+                              return const Center(
+                                  child: Text('No booking history found.'));
                             }
                             return ListView.builder(
                               padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -95,10 +106,12 @@ class HistoryPage extends StatelessWidget {
                                   child: Padding(
                                     padding: EdgeInsets.all(20.w),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Expanded(
                                               child: Text(
@@ -116,17 +129,25 @@ class HistoryPage extends StatelessWidget {
                                         SizedBox(height: 8.h),
                                         Row(
                                           children: [
-                                            const Icon(Icons.calendar_month_rounded, color: Color(0xFF0D1B4D)),
+                                            const Icon(
+                                                Icons.calendar_month_rounded,
+                                                color: Color(0xFF0D1B4D)),
                                             SizedBox(width: 8.w),
-                                            Text("Tanggal: ${booking.tanggal}", style: TextStyle(fontSize: 14.sp)),
+                                            Text("Tanggal: ${booking.tanggal}",
+                                                style:
+                                                    TextStyle(fontSize: 14.sp)),
                                           ],
                                         ),
                                         SizedBox(height: 4.h),
                                         Row(
                                           children: [
-                                            const Icon(Icons.access_time_filled, color: Color(0xFF0D1B4D)),
+                                            const Icon(Icons.access_time_filled,
+                                                color: Color(0xFF0D1B4D)),
                                             SizedBox(width: 8.w),
-                                            Text("Waktu: ${booking.mulai} - ${booking.selesai}", style: TextStyle(fontSize: 14.sp)),
+                                            Text(
+                                                "Waktu: ${booking.mulai} - ${booking.selesai}",
+                                                style:
+                                                    TextStyle(fontSize: 14.sp)),
                                           ],
                                         ),
                                       ],
