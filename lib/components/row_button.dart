@@ -23,7 +23,7 @@ class RowButton extends StatelessWidget {
             },
             style: OutlinedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 10.h),
-              side: const BorderSide(color: Color(0xFF20469B), width: 2),
+              side: const BorderSide(color: Color(0xFF0D1B4D), width: 2),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),
               ),
@@ -31,7 +31,7 @@ class RowButton extends StatelessWidget {
             child: Text(
               text1,
               style: TextStyle(
-                color: const Color(0xFF20469B),
+                color: const Color(0xFF0D1B4D),
                 fontSize: 14.sp,
                 fontWeight: FontWeight.bold,
               ),
@@ -45,8 +45,8 @@ class RowButton extends StatelessWidget {
             onPressed: onPressed,
             style: ElevatedButton.styleFrom(
               padding: EdgeInsets.symmetric(vertical: 10.h),
-              backgroundColor: const Color(0xFF20469B),
-              shadowColor: const Color(0xFF20469B),
+              backgroundColor: const Color(0xFF0D1B4D),
+              shadowColor: const Color(0xFF0D1B4D),
               elevation: 5,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10),

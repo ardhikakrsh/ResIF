@@ -19,7 +19,7 @@ class AccountInfoRow extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 10.h),
       child: Row(
         children: [
-          Icon(icon, color: const Color(0xFF20469B)),
+          Icon(icon, color: const Color(0xFF0D1B4D)),
           SizedBox(width: 10.w),
           Expanded(
             child: Column(
