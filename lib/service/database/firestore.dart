@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
+import 'package:resif/models/booking.dart';
 import 'package:resif/models/rooms.dart';
 import 'package:resif/models/rules.dart';
 
@@ -9,6 +10,9 @@ class FirestoreService {
   final CollectionReference users = FirebaseFirestore.instance.collection(
     'users',
   );
+
+  final CollectionReference bookingForm =
+      FirebaseFirestore.instance.collection('bookings');
 
   // hash password
   String hashPassword(String password) {
@@ -114,6 +118,29 @@ class FirestoreService {
     } catch (e) {
       print("Error fetching rooms: $e");
       throw Exception("Gagal memuat data ruangan.");
+    }
+  }
+
+  Future<void> addBooking(BookingModel booking) {
+    return bookingForm.add(booking.toMap());
+  }
+
+  // NEW: Method to fetch all bookings
+  Future<List<BookingModel>> fetchBookings() async {
+    try {
+      QuerySnapshot snapshot = await bookingForm
+          .orderBy('createdAt', descending: true) // Show newest first
+          .get();
+      if (snapshot.docs.isEmpty) {
+        return [];
+      }
+      return snapshot.docs.map((doc) {
+        return BookingModel.fromMap(doc.data() as Map<String, dynamic>,
+            id: doc.id);
+      }).toList();
+    } catch (e) {
+      print("Error fetching bookings: $e");
+      throw Exception("Gagal memuat data booking.");
     }
   }
 }
