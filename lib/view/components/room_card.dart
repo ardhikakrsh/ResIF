@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:resif/models/rooms.dart';
-import 'package:resif/view/pages/booking/detail_room.dart';
+import 'package:resif/view/screens/booking/detail_room.dart';
 
 class RoomCard extends StatefulWidget {
   final Room room;
