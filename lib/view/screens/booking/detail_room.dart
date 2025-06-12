@@ -39,7 +39,6 @@ class _DetailRoomPageState extends State<DetailRoomPage>
       child: Consumer<DetailRoomViewModel>(
         builder: (context, viewModel, child) {
           return Scaffold(
-            backgroundColor: Colors.grey[200],
             body: Stack(
               children: [
                 BlueBackground(height: 150.h),
@@ -68,7 +67,7 @@ class _DetailRoomPageState extends State<DetailRoomPage>
                           child: Container(
                             padding: EdgeInsets.all(20.w),
                             decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: Colors.grey.withOpacity(0.1),
                               borderRadius: BorderRadius.circular(20.r),
                               boxShadow: [
                                 BoxShadow(

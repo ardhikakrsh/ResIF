@@ -26,7 +26,10 @@ class BookingPage extends StatelessWidget {
                     children: [
                       Padding(
                         padding: EdgeInsets.only(
-                            top: 30.0.h, left: 20.0.w, right: 20.0.w, bottom: 20.0.h),
+                            top: 30.0.h,
+                            left: 20.0.w,
+                            right: 20.0.w,
+                            bottom: 20.0.h),
                         child: const Header(),
                       ),
                       SizedBox(height: 20.h),

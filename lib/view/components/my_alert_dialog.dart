@@ -60,7 +60,10 @@ class MyAlertDialog extends StatelessWidget {
             ),
           ),
           onPressed: () => Navigator.of(context).pop(),
-          child: Text(buttonText1, style: TextStyle(color: Colors.white)),
+          child: Text(
+            buttonText1,
+            style: const TextStyle(color: Colors.white),
+          ),
         ),
         ElevatedButton(
           style: ElevatedButton.styleFrom(
@@ -70,7 +73,7 @@ class MyAlertDialog extends StatelessWidget {
             ),
           ),
           onPressed: onPressed,
-          child: Text(buttonText2, style: TextStyle(color: Colors.white)),
+          child: Text(buttonText2, style: const TextStyle(color: Colors.white)),
         ),
       ],
     );

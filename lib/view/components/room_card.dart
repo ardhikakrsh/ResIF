@@ -28,7 +28,7 @@ class _RoomCardState extends State<RoomCard> {
         padding: EdgeInsets.all(20.w),
         decoration: BoxDecoration(
           color: const Color(0xFFEDEDED),
-          borderRadius: BorderRadius.circular(15.r),
+          borderRadius: BorderRadius.circular(10.r),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
