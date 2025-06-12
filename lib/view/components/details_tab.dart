@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:resif/view/components/row_button.dart';
 import 'package:resif/models/rooms.dart';
+import 'package:resif/view/screens/booking/agenda_page.dart';
 
 class DetailsTab extends StatelessWidget {
   final Room room;
@@ -32,7 +33,14 @@ class DetailsTab extends StatelessWidget {
           RowButton(
             text1: "Back",
             text2: "Agenda",
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AgendaPage(room: room),
+                ),
+              );
+            },
           )
         ],
       ),

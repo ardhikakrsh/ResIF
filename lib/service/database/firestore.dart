@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:convert';
 import 'package:crypto/crypto.dart';
+import 'package:intl/intl.dart';
 import 'package:resif/models/booking.dart';
 import 'package:resif/models/rooms.dart';
 import 'package:resif/models/rules.dart';
@@ -141,6 +142,35 @@ class FirestoreService {
     } catch (e) {
       print("Error fetching bookings: $e");
       throw Exception("Gagal memuat data pemesanan.");
+    }
+  }
+
+  Future<List<BookingModel>> fetchBookingsForRoomByDate(
+      String roomCode, DateTime date) async {
+    try {
+      final String formattedDate = DateFormat('dd-MM-yyyy').format(date);
+
+      QuerySnapshot snapshot = await bookingForm
+          .where('roomCode',
+              isEqualTo: roomCode) // 1. Filter berdasarkan ruangan
+          .where('tanggal',
+              isEqualTo:
+                  formattedDate) // 2. Filter berdasarkan tanggal (String)
+          .where('status',
+              isEqualTo: 'approved') // 3. Hanya tampilkan yang sudah disetujui
+          .orderBy('mulai') // Urutkan berdasarkan waktu mulai
+          .get();
+
+      if (snapshot.docs.isEmpty) {
+        return [];
+      }
+
+      return snapshot.docs.map((doc) {
+        return BookingModel.fromMap(doc.data() as Map<String, dynamic>, doc.id);
+      }).toList();
+    } catch (e) {
+      print("Error fetching bookings for room $roomCode on $date: $e");
+      throw Exception("Gagal memuat data agenda.");
     }
   }
 }

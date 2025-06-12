@@ -31,12 +31,17 @@ class HistoryPage extends StatelessWidget {
       label: Text(
         statusText,
         style: TextStyle(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87),
+            fontSize: 12.sp, fontWeight: FontWeight.bold, color: Colors.black),
       ),
       backgroundColor: chipColor,
       padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 4.h),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10.r),
+        side: BorderSide(
+          color: Colors.transparent,
+          width: 1.w,
+        ),
+      ),
     );
   }
 
@@ -68,7 +73,7 @@ class HistoryPage extends StatelessWidget {
                     padding: EdgeInsets.only(
                         left: 20.w, right: 20.w, top: 20.h, bottom: 10.h),
                     child: Text(
-                      'Riwayat Booking',
+                      'History Booking',
                       style: TextStyle(
                         fontSize: 20.sp,
                         fontWeight: FontWeight.bold,
@@ -98,8 +103,8 @@ class HistoryPage extends StatelessWidget {
                                 final booking = viewModel.bookings[index];
                                 return Card(
                                   margin: EdgeInsets.only(bottom: 20.h),
-                                  color: Colors.white,
-                                  elevation: 2,
+                                  color: const Color(0xFFEDEDED),
+                                  elevation: 5,
                                   shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10.r),
                                   ),
@@ -133,9 +138,10 @@ class HistoryPage extends StatelessWidget {
                                                 Icons.calendar_month_rounded,
                                                 color: Color(0xFF0D1B4D)),
                                             SizedBox(width: 8.w),
-                                            Text("Tanggal: ${booking.tanggal}",
-                                                style:
-                                                    TextStyle(fontSize: 14.sp)),
+                                            Text(
+                                              "Tanggal: ${booking.tanggal}",
+                                              style: TextStyle(fontSize: 14.sp),
+                                            ),
                                           ],
                                         ),
                                         SizedBox(height: 4.h),
@@ -145,9 +151,9 @@ class HistoryPage extends StatelessWidget {
                                                 color: Color(0xFF0D1B4D)),
                                             SizedBox(width: 8.w),
                                             Text(
-                                                "Waktu: ${booking.mulai} - ${booking.selesai}",
-                                                style:
-                                                    TextStyle(fontSize: 14.sp)),
+                                              "Waktu: ${booking.mulai} - ${booking.selesai}",
+                                              style: TextStyle(fontSize: 14.sp),
+                                            ),
                                           ],
                                         ),
                                       ],
